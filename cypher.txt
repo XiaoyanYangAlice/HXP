@@ -1,0 +1,131 @@
+1)Create Guidance
+Cypher code:
+CREATE (a: Guide{name:"HXP"})
+CREATE (b: FirstGuide{name:"Poetry"})
+CREATE (c: FirstGuide{name:"Writer"})
+CREATE (d: FirstGuide{name:"Time"})
+CREATE (e: FirstGuide{name:"Place"})
+CREATE (f: FirstGuide{name:"Allusion"})
+CREATE (g: FirstGuide{name:"Imagery"})
+RETURN *;
+MATCH (a:Guide)
+MATCH (b:FirstGuide)
+MERGE (a)-[r:hxp_firstClass]->(b)
+RETURN *;
+
+
+Figure 9 Guidance nodes and related relationships in HXP KG
+
+2)Load Poetry nodes
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+CREATE (a:Poetry{PoetryId:row.Id, Title:row.Title, Type:row.Type, Content:row.Content})
+WITH a,row
+MATCH (x: FirstGuide{name:"Poetry"})
+MERGE (x)-[r:hxp_individual]->(a)
+RETURN *;
+
+
+
+Figure 10 Poetry nodes and related relationships in HXP KG (part)
+
+3)Load Place nodes
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+WITH row WHERE row.MentionedPlace IS NOT NULL
+MATCH (a:Poetry{PoetryId:row.Id})
+UNWIND split(row.MentionedPlace, ':') AS place
+MERGE (b:Place{name:place})
+MERGE (a)-[r:hxp_containPlace]->(b)
+WITH a,b
+MATCH (x: FirstGuide{name:"Place"})
+MERGE (x)-[rr:hxp_individual]->(b)
+RETURN *;
+
+
+Figure 11 Place nodes and related relationship of hxp_containPlace in HXP KG (part)
+
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+WITH row WHERE row.CreatePlace IS NOT NULL
+MATCH (a:Poetry{PoetryId:row.Id})
+MERGE (e:Place{name:row.CreatePlace})
+MERGE (a)-[r:hxp_createPlace]->(e)
+WITH a,e,row
+MATCH (x: FirstGuide{name:"Place"})
+MERGE (x)-[rr:hxp_individual]->(e)
+RETURN *;
+
+
+Figure 12 Place nodes and related relationship of “hxp_createPlace” in HXP KG (part)
+
+
+4)Load nodes of Writer and their dynasties
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+MATCH (a:Poetry{PoetryId:row.Id})
+MERGE(f:Writer{name:row.Writer})
+MERGE (a)-[r:dc_creator]->(f)
+WITH a,f,row
+MATCH (x:FirstGuide{name:"Writer"})
+MERGE (x)-[rr:hxp_individual]->(f)
+WITH f,row
+MERGE (k:Time{name:row.Dynasty})
+MERGE (f)-[r:shl_temporal]->(k)
+WITH k
+MATCH (x:FirstGuide{name:"Time"})
+MERGE (x)-[rr:hxp_individual]->(k)
+RETURN *;
+
+
+
+Figure 13 Writer nodes and related relationship of “dc_creator” in HXP KG (part)
+
+
+Figure 14 Dynasty information in Time nodes in HXP KG (part)
+
+
+Figure 15 Writer nodes and related relationship of “shl_temporal” in HXP KG (part)
+
+5)Load nodes of the year that the poem was created
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+MATCH (a:Poetry{PoetryId:row.Id})
+MERGE(g:Time{name:row.Year})
+MERGE (a)-[r:dc_date]->(g)
+WITH a,g,row
+MATCH (x: FirstGuide{name:"Time"})
+MERGE (x)-[rr:hxp_individual]->(g)
+RETURN *;
+
+
+Figure 16 Poetry and Time nodes with the related relationship of “dc_date” in HXP KG (part)
+
+6)Load Allusion nodes
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+WITH row WHERE row.Allusion IS NOT NULL
+MATCH (a:Poetry{PoetryId:row.Id})
+UNWIND split(row.Allusion, ':') AS allusion
+CREATE (c:Allusion{name:allusion})
+MERGE (a)-[r:hxp_containAllusion]->(c)
+WITH a,c
+MATCH (x: FirstGuide{name:"Allusion"})
+MERGE (x)-[rr:hxp_individual]->(c)
+RETURN *;
+
+
+Figure 17 Allusion nodes and related relationships in HXP KG (part)
+
+7)Load Imagery nodes
+Cypher code:
+LOAD CSV WITH HEADERS FROM "file:///Poetry.csv" AS row
+WITH row WHERE row.Imagery IS NOT NULL
+MATCH (a:Poetry{PoetryId:row.Id})
+UNWIND split(row.Imagery, ':') AS imagery
+CREATE (d:Imagery{name:imagery})
+MERGE (a)-[r:hxp_containImagery]->(d)
+WITH a,d
+MATCH (x: FirstGuide{name:"Imagery"})
+MERGE (x)-[rr:hxp_individual]->(d)
+RETURN *;
