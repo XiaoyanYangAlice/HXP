@@ -1,0 +1,1469 @@
+@prefix : <http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix hxp: <http://www.HexiCorridorPoem.com/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@base <http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#> .
+
+<http://www.HexiRegionalPoetry.com> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:ObjectProperty ;
+           rdfs:domain crm:E89_Propositional_Object ;
+           rdfs:range crm:E39_Actor ;
+           rdfs:label "dc:creator" .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:ObjectProperty ;
+        rdfs:domain crm:E89_Propositional_Object ;
+        rdfs:range crm:E52_Time-Span ;
+        rdfs:label "dc:date" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P101_had_as_general_use
+crm:P101_had_as_general_use rdf:type owl:ObjectProperty ;
+                            owl:inverseOf crm:P101_was_use_of ;
+                            rdfs:domain crm:E70_Thing ;
+                            rdfs:range crm:E55_Type ;
+                            rdfs:comment "link individuals (place, poem, events) with their corresponding types" ;
+                            rdfs:label "P101 had as general use" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P101_was_use_of
+crm:P101_was_use_of rdf:type owl:ObjectProperty ;
+                    rdfs:domain crm:E55_Type ;
+                    rdfs:range crm:E70_Thing ;
+                    rdfs:label "P101 was use of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P102_has_title
+crm:P102_has_title rdf:type owl:ObjectProperty ;
+                   rdfs:domain crm:E71_Human-Made_Thing ;
+                   rdfs:range crm:E35_Title ;
+                   rdfs:label "P102 has title" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P106_forms_part_of
+crm:P106_forms_part_of rdf:type owl:ObjectProperty ;
+                       owl:inverseOf crm:P106_is_composed_of ;
+                       rdfs:domain crm:E90_Symbolic_Object ;
+                       rdfs:range crm:E90_Symbolic_Object ;
+                       rdfs:label "P106 forms part of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P106_is_composed_of
+crm:P106_is_composed_of rdf:type owl:ObjectProperty ;
+                        rdfs:domain crm:E90_Symbolic_Object ;
+                        rdfs:range crm:E90_Symbolic_Object ;
+                        rdfs:comment "link poem content with the imageries mentioned in this poem" ;
+                        rdfs:label "P106 is composed of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P11_had_participant
+crm:P11_had_participant rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf crm:P12_occurred_in_the_presence_of ;
+                        owl:inverseOf crm:P11_participated_in ;
+                        rdfs:domain crm:E5_Event ;
+                        rdfs:range crm:E39_Actor ;
+                        rdfs:label "P11 had participant" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P11_participated_in
+crm:P11_participated_in rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf crm:P12_was_present_at ;
+                        rdfs:domain crm:E39_Actor ;
+                        rdfs:range crm:E5_Event ;
+                        rdfs:comment "people participated in events (link figures with allusions and poets with creations)" ;
+                        rdfs:label "P11 participated in" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P120_occurs_after
+crm:P120_occurs_after rdf:type owl:ObjectProperty ;
+                      owl:inverseOf crm:P120_occurs_before ;
+                      rdfs:domain <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                      rdfs:range <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                      rdfs:comment "determine the sequence of dynasties" ;
+                      rdfs:label "P120 occurs after" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before
+crm:P120_occurs_before rdf:type owl:ObjectProperty ;
+                       rdfs:domain <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                       rdfs:range <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                       rdfs:label "P120 occurs before" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P121_overlaps_with
+crm:P121_overlaps_with rdf:type owl:ObjectProperty ;
+                       rdfs:domain crm:E53_Place ;
+                       rdfs:range crm:E53_Place ;
+                       rdfs:label "P121 overlaps with" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P122_borders_with
+crm:P122_borders_with rdf:type owl:ObjectProperty ;
+                      rdfs:domain crm:E53_Place ;
+                      rdfs:range crm:E53_Place ;
+                      rdfs:comment "places geographic relationships" ;
+                      rdfs:label "P122 borders with" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P127_has_broader_term
+crm:P127_has_broader_term rdf:type owl:ObjectProperty ;
+                          owl:inverseOf crm:P127_has_narrower_term ;
+                          rdfs:domain crm:E55_Type ;
+                          rdfs:range crm:E55_Type ;
+                          rdfs:comment "show the hierarchy of type class" ;
+                          rdfs:label "P127 has broader term" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P127_has_narrower_term
+crm:P127_has_narrower_term rdf:type owl:ObjectProperty ;
+                           rdfs:domain crm:E55_Type ;
+                           rdfs:range crm:E55_Type ;
+                           rdfs:label "P127 has narrower term" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P129_is_about
+crm:P129_is_about rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf crm:P67_refers_to ;
+                  owl:inverseOf crm:P129_is_subject_of ;
+                  rdfs:domain crm:E89_Propositional_Object ;
+                  rdfs:range crm:E1_CRM_Entity ;
+                  rdfs:comment "link poem content with the places mentioned" ;
+                  rdfs:label "P129 is about" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P129_is_subject_of
+crm:P129_is_subject_of rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf crm:P67_is_referred_to_by ;
+                       rdfs:domain crm:E1_CRM_Entity ;
+                       rdfs:range crm:E89_Propositional_Object ;
+                       rdfs:label "P129 is subject of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of
+crm:P12_occurred_in_the_presence_of rdf:type owl:ObjectProperty ;
+                                    owl:inverseOf crm:P12_was_present_at ;
+                                    rdfs:domain crm:E5_Event ;
+                                    rdfs:range crm:E77_Persistent_Item ;
+                                    rdfs:label "P12 occurred in the presence of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P12_was_present_at
+crm:P12_was_present_at rdf:type owl:ObjectProperty ;
+                       rdfs:domain crm:E77_Persistent_Item ;
+                       rdfs:range crm:E5_Event ;
+                       rdfs:label "P12 was present at" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P130_features_are_also_found_on
+crm:P130_features_are_also_found_on rdf:type owl:ObjectProperty ;
+                                    owl:inverseOf crm:P130_shows_features_of ;
+                                    rdfs:domain crm:E70_Thing ;
+                                    rdfs:range crm:E70_Thing ;
+                                    rdfs:label "P130 features are also found on" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P130_shows_features_of
+crm:P130_shows_features_of rdf:type owl:ObjectProperty ;
+                           rdfs:domain crm:E70_Thing ;
+                           rdfs:range crm:E70_Thing ;
+                           rdfs:comment "connect man-made object imageries with their physical antique examples" ;
+                           rdfs:label "P130 shows features of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P139_has_alternative_form
+crm:P139_has_alternative_form rdf:type owl:ObjectProperty ;
+                              rdfs:domain crm:E41_Appellation ;
+                              rdfs:range crm:E41_Appellation ;
+                              rdfs:comment "collect alternative names of places/people/imagery names (link them together)" ;
+                              rdfs:label "P139 has alternative form" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P148_has_component
+crm:P148_has_component rdf:type owl:ObjectProperty ;
+                       owl:inverseOf crm:P148_is_component_of ;
+                       rdfs:domain crm:E89_Propositional_Object ;
+                       rdfs:range crm:E89_Propositional_Object ;
+                       rdfs:label "P148 has component" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P148_is_component_of
+crm:P148_is_component_of rdf:type owl:ObjectProperty ;
+                         rdfs:label "P148 is component of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by
+crm:P14_carried_out_by rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf crm:P11_had_participant ;
+                       owl:inverseOf crm:P14_performed ;
+                       rdfs:domain crm:E7_Activity ;
+                       rdfs:range crm:E39_Actor ;
+                       rdfs:label "P14 carried out by" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P14_performed
+crm:P14_performed rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf crm:P11_participated_in ;
+                  rdfs:domain crm:E39_Actor ;
+                  rdfs:range crm:E7_Activity ;
+                  rdfs:comment "link poet with visiting Hexi places (activity)" ;
+                  rdfs:label "P14 performed" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P165_incorporates
+crm:P165_incorporates rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf crm:P106_is_composed_of ;
+                      owl:inverseOf crm:P165_is_incorporated_in ;
+                      rdfs:domain crm:E73_Information_Object ;
+                      rdfs:range crm:E90_Symbolic_Object ;
+                      rdfs:label "P165 incorporates" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P165_is_incorporated_in
+crm:P165_is_incorporated_in rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf crm:P106_forms_part_of ;
+                            rdfs:domain crm:E90_Symbolic_Object ;
+                            rdfs:range crm:E73_Information_Object ;
+                            rdfs:label "P165 is incorporated in" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P1_identifies
+crm:P1_identifies rdf:type owl:ObjectProperty ;
+                  owl:inverseOf crm:P1_is_identified_by ;
+                  rdfs:domain crm:E41_Appellation ;
+                  rdfs:range crm:E1_CRM_Entity ;
+                  rdfs:comment "link place, time, people appellation with individuals (eg:link title with peom contents)" ;
+                  rdfs:label "P1 identifies" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by
+crm:P1_is_identified_by rdf:type owl:ObjectProperty ;
+                        rdfs:domain crm:E1_CRM_Entity ;
+                        rdfs:range crm:E41_Appellation ;
+                        rdfs:label "P1 is identified by" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P2_has_type
+crm:P2_has_type rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                owl:inverseOf crm:P2_is_type_of ;
+                rdfs:domain crm:E1_CRM_Entity ;
+                rdfs:range crm:E55_Type ;
+                rdfs:comment "link individuals with its type (Place type, Poem type, Length type, Imagery type)" ;
+                rdfs:label "P2 has type" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P2_is_type_of
+crm:P2_is_type_of rdf:type owl:ObjectProperty ;
+                  rdfs:domain crm:E55_Type ;
+                  rdfs:range crm:E1_CRM_Entity ;
+                  rdfs:label "P2 is type of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P4_has_time_span_of
+crm:P4_has_time_span_of rdf:type owl:ObjectProperty ;
+                        owl:inverseOf crm:P4_is_time_span_of ;
+                        rdfs:domain <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                        rdfs:range crm:E52_Time-Span ;
+                        rdfs:comment "link the dynasty period with the specific year of duration in E53: Time-span together" ;
+                        rdfs:label "P4 has time-span of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P4_is_time_span_of
+crm:P4_is_time_span_of rdf:type owl:ObjectProperty ;
+                       rdfs:domain crm:E52_Time-Span ;
+                       rdfs:range <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+                       rdfs:label "P4 is time-span of" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P67_is_referred_to_by
+crm:P67_is_referred_to_by rdf:type owl:ObjectProperty ;
+                          owl:inverseOf crm:P67_refers_to ;
+                          rdfs:domain crm:E1_CRM_Entity ;
+                          rdfs:range crm:E89_Propositional_Object ;
+                          rdfs:label "P67 is referred to by" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P67_refers_to
+crm:P67_refers_to rdf:type owl:ObjectProperty ;
+                  rdfs:domain crm:E89_Propositional_Object ;
+                  rdfs:range crm:E1_CRM_Entity ;
+                  rdfs:comment "link poem content with other individuals (allusion, title, genre?)" ;
+                  rdfs:label "P67 refers to" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P70_is_documented_in
+crm:P70_is_documented_in rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf crm:P67_is_referred_to_by ;
+                         owl:inverseOf <http://www.cidoc-crm.org/cidoc-crm/P70%20_documents> ;
+                         rdfs:domain crm:E1_CRM_Entity ;
+                         rdfs:range crm:E31_Document ;
+                         rdfs:label "P70 is documented in" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at
+crm:P7_took_place_at rdf:type owl:ObjectProperty ;
+                     owl:inverseOf crm:P7_witnessed ;
+                     rdfs:domain crm:E4_Period ;
+                     rdfs:range crm:E53_Place ;
+                     rdfs:comment "link event (visiting, writing, allusions) with the Hexi places" ;
+                     rdfs:label "P7 took place at" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P7_witnessed
+crm:P7_witnessed rdf:type owl:ObjectProperty ;
+                 rdfs:domain crm:E53_Place ;
+                 rdfs:range crm:E4_Period ;
+                 rdfs:label "P7 witnessed" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P86_contains
+crm:P86_contains rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 owl:inverseOf crm:P86_falls_within ;
+                 rdfs:domain crm:E52_Time-Span ;
+                 rdfs:range crm:E52_Time-Span ;
+                 rdfs:comment "link a specific year individual with a period of time (duration of a dynasty)" ;
+                 rdfs:label "P86 contains" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P86_falls_within
+crm:P86_falls_within rdf:type owl:ObjectProperty ;
+                     rdfs:domain crm:E52_Time-Span ;
+                     rdfs:range crm:E52_Time-Span ;
+                     rdfs:label "P86 falls within" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P89_contains
+crm:P89_contains rdf:type owl:ObjectProperty ;
+                 owl:inverseOf crm:P89_falls_within ;
+                 rdfs:domain crm:E53_Place ;
+                 rdfs:range crm:E53_Place ;
+                 rdfs:label "P89 contains" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P89_falls_within
+crm:P89_falls_within rdf:type owl:ObjectProperty ;
+                     rdfs:domain crm:E53_Place ;
+                     rdfs:range crm:E53_Place ;
+                     rdfs:label "P89 falls within" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P92_brought_into_existence
+crm:P92_brought_into_existence rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf crm:P12_occurred_in_the_presence_of ;
+                               owl:inverseOf crm:P92_was_brought_into_existence_by ;
+                               rdfs:domain crm:E63_Beginning_of_Existence ;
+                               rdfs:range crm:E77_Persistent_Item ;
+                               rdfs:label "P92 brought into existence" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P92_was_brought_into_existence_by
+crm:P92_was_brought_into_existence_by rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf crm:P12_was_present_at ;
+                                      rdfs:domain crm:E77_Persistent_Item ;
+                                      rdfs:range crm:E63_Beginning_of_Existence ;
+                                      rdfs:label "P92 was brought into existence by" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P94_has_created
+crm:P94_has_created rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf crm:P92_brought_into_existence ;
+                    owl:inverseOf crm:P94_was_created_by ;
+                    rdfs:domain crm:E65_Creation ;
+                    rdfs:range crm:E28_Conceptual_Object ;
+                    rdfs:label "P94 has created" ,
+                               "link the creation (event) with the poem content (linguistic)" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P94_was_created_by
+crm:P94_was_created_by rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf crm:P92_was_brought_into_existence_by ;
+                       rdfs:domain crm:E28_Conceptual_Object ;
+                       rdfs:range crm:E65_Creation ;
+                       rdfs:label "P94 was created by" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/P70%20_documents
+<http://www.cidoc-crm.org/cidoc-crm/P70%20_documents> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf crm:P67_refers_to ;
+                                                      rdfs:domain crm:E31_Document ;
+                                                      rdfs:range crm:E1_CRM_Entity ;
+                                                      rdfs:comment "link the ancient and regional catelogues with the poem title" ;
+                                                      rdfs:label "P70  documents" .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:domain crm:E1_CRM_Entity ;
+                      rdfs:range crm:E1_CRM_Entity .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://schema.org/description
+schema:description rdf:type owl:DatatypeProperty ;
+                   rdfs:range rdfs:Literal .
+
+
+###  http://schema.org/text
+schema:text rdf:type owl:DatatypeProperty ;
+            rdfs:range rdfs:Literal .
+
+
+###  http://xmlns.com/foaf/0.1/gender
+foaf:gender rdf:type owl:DatatypeProperty ;
+            rdfs:domain crm:E39_Actor ;
+            rdfs:range rdfs:Literal ;
+            rdfs:comment "gender of the poet and historical figures" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.HexiCorridorPoem.com#E2_Temporal_Entity
+<http://www.HexiCorridorPoem.com#E2_Temporal_Entity> rdf:type owl:Class ;
+                                                     rdfs:subClassOf crm:E1_CRM_Entity ;
+                                                     rdfs:label "E2 Temporal Entity"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity
+crm:E1_CRM_Entity rdf:type owl:Class ;
+                  rdfs:comment """Scope note:	
+This class comprises all things in the universe of discourse of the CIDOC Conceptual Reference Model. 
+
+It is an abstract concept providing for three general properties:
+1.Identification by name or appellation, and in particular by a preferred identifier
+2.Classification by type, allowing further refinement of the specific subclass an instance belongs to 
+3.Attachment of free text for the expression of anything not captured by formal properties
+
+With the exception of E59 Primitive Value, all other classes within the CRM are directly or indirectly specialisations of E1 CRM Entity. 
+
+Examples:
+the earthquake in Lisbon 1755 (E5)
+
+In First Order Logic: 
+E1(x)"""@en ;
+                  rdfs:label "E1 CRM Entity"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object
+crm:E22_Human-Made_Object rdf:type owl:Class ;
+                          rdfs:subClassOf crm:E24_Physical_Human-Made_Thing ;
+                          rdfs:comment """Scope note:
+This class comprises physical objects purposely created by human activity.
+
+No assumptions are made as to the extent of modification required to justify regarding an object as man-made. For example, an inscribed piece of rock or a preserved butterfly are both regarded as instances of E22 Man-Made Object.
+
+Examples:
+- Mallard (the World's fastest steam engine)
+- the Portland Vase
+- the Coliseum
+
+In First Order Logic:
+E22(x) ⊃ E19(x)
+E22(x) ⊃ E24(x)"""@en ,
+                                       "examples of object imageries (archaeological discovery, museum collections)" ;
+                          rdfs:label "E22 Human-Made Object"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E24_Physical_Human-Made_Thing
+crm:E24_Physical_Human-Made_Thing rdf:type owl:Class ;
+                                  rdfs:subClassOf crm:E71_Human-Made_Thing ;
+                                  rdfs:comment """Scope note:
+This class comprises all persistent physical items that are purposely created by human activity.
+
+This class comprises man-made objects, such as a swords, and man-made features, such as rock art. No assumptions are made as to the extent of modification required to justify regarding an object as man-made. For example, a \"cup and ring\" carving on bedrock is regarded as instance of E24 Physical Man-Made Thing.
+
+Examples:
+- the Forth Railway Bridge (E22)
+- the Channel Tunnel (E25)
+- the Historical Collection of the Museum Benaki in Athens (E78)
+
+In First Order Logic:
+E24(x) ⊃ E18(x)
+E24(x) ⊃ E71(x)"""@en ;
+                                  rdfs:label "E24 Physical Human-Made Thing"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object
+crm:E28_Conceptual_Object rdf:type owl:Class ;
+                          rdfs:subClassOf crm:E71_Human-Made_Thing ;
+                          rdfs:comment """Scope note:
+This class comprises non-material products of our minds and other human produced data that have become objects of a discourse about their identity, circumstances of creation or historical implication. The production of such information may have been supported by the use of technical devices such as cameras or computers.
+
+Characteristically, instances of this class are created, invented or thought by someone, and then may be documented or communicated between persons. Instances of E28 Conceptual Object have the ability to exist on more than one particular carrier at the same time, such as paper, electronic signals, marks, audio media, paintings, photos, human memories, etc.
+They cannot be destroyed. They exist as long as they can be found on at least one carrier or in at least one human memory. Their existence ends when the last carrier and the last memory are lost.
+
+Examples:
+- Beethoven's \"Ode an die Freude\" (Ode to Joy) (E73)
+- the definition of \"ontology\" in the Oxford English Dictionary
+- the knowledge about the victory at Marathon carried by the famous runner
+- 'Maxwell equations' [preferred subject access point from LCSH,
+ http://lccn.loc.gov/sh85082387, as of 19 November 2012]
+- 'Equations, Maxwell' [variant subject access point, from the same source]
+
+In First Order Logic:
+E28(x) ⊃ E71(x)"""@en ;
+                          rdfs:label "E28 Conceptual Object"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E31_Document
+crm:E31_Document rdf:type owl:Class ;
+                 rdfs:subClassOf crm:E73_Information_Object ;
+                 rdfs:comment """Scope note:
+This class comprises identifiable immaterial items that make propositions about reality.
+These propositions may be expressed in text, graphics, images, audiograms, videograms or by other similar means. Documentation databases are regarded as a special case of E31 Document. This class should not be confused with the term \"document\" in Information Technology, which is compatible with E73 Information Object.
+
+Examples:
+- the Encyclopaedia Britannica (E32)
+- The image content of the photo of the Allied Leaders at Yalta published by UPI, 1945 (E38)
+- the Doomsday Book
+
+In First Order Logic:
+E31(x) ⊃ E73(x)"""@en ,
+                              "ancientCatalogue and regionCatalogue" ;
+                 rdfs:label "E31 Document"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object
+crm:E33_Linguistic_Object rdf:type owl:Class ;
+                          rdfs:subClassOf crm:E73_Information_Object ;
+                          rdfs:comment """Scope note:
+This class comprises identifiable expressions in natural language or languages.
+
+Instances of E33 Linguistic Object can be expressed in many ways: e.g. as written texts, recorded speech or sign language. However, the CRM treats instances of E33 Linguistic Object independently from the medium or method by which they are expressed. Expressions in formal languages, such as computer code or mathematical formulae, are not treated as instances of E33 Linguistic Object by the CRM. These should be modelled as instances of E73 Information Object.
+The text of an instance of E33 Linguistic Object can be documented in a note by P3 has note: E62 String
+
+Examples:
+- the text of the Ellesmere Chaucer manuscript
+- the lyrics of the song \"Blue Suede Shoes\"
+- the text of the Jabberwocky by Lewis Carroll
+- the text of \"Doktoro Jekyll kaj Sinjoro Hyde\" (an Esperanto translation of Dr Jekyll and Mr Hyde)
+
+In First Order Logic:
+E33(x) ⊃ E73(x)"""@en ,
+                                       "Poem content" ;
+                          rdfs:label "E33 Linguistic Object"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E35_Title
+crm:E35_Title rdf:type owl:Class ;
+              rdfs:subClassOf crm:E41_Appellation ;
+              rdfs:comment """Scope note:
+This class comprises the names assigned to works, such as texts, artworks or pieces of music.
+
+Titles are proper noun phrases or verbal phrases, and should not be confused with generic object names such as \"chair\", \"painting\" or \"book\" (the latter are common nouns that stand for instances of E55 Type). Titles may be assigned by the creator of the work itself, or by a social group.
+
+This class also comprises the translations of titles that are used as surrogates for the original titles in different social contexts.
+
+Examples:
+- \"The Merchant of Venice\"
+- \"Mona Lisa\"
+- \"La Pie or The Magpie\"
+- \"Lucy in the Sky with Diamonds\"
+
+In First Order Logic:
+E35(x) ⊃ E33(x)
+E35(x) ⊃ E41(x)"""@en ,
+                           "Title of the poem" ;
+              rdfs:label "E35 Title"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E39_Actor
+crm:E39_Actor rdf:type owl:Class ;
+              rdfs:subClassOf crm:E77_Persistent_Item ;
+              rdfs:comment """Scope note:
+This class comprises people, either individually or in groups, who have the potential to perform intentional actions of kinds for which someone may be held responsible.
+
+The CRM does not attempt to model the inadvertent actions of such actors. Individual people should be documented as instances of E21 Person, whereas groups should be documented as instances of either E74 Group or its subclass E40 Legal Body.
+
+Examples:
+- London and Continental Railways (E40)
+- the Governor of the Bank of England in 1975 (E21)
+- Sir Ian McKellan (E21)
+
+In First Order Logic:
+E39(x) ⊃ E77(x)"""@en ,
+                           "poet and historical figures" ;
+              rdfs:label "E39 Actor"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E41_Appellation
+crm:E41_Appellation rdf:type owl:Class ;
+                    rdfs:subClassOf crm:E90_Symbolic_Object ;
+                    rdfs:comment """Scope note:
+This class comprises signs, either meaningful or not, or arrangements of signs following a specific syntax, that are used or can be used to refer to and identify a specific instance of some class or category within a certain context. 
+
+Instances of E41 Appellation do not identify things by their meaning, even if they happen to have one, but instead by convention, tradition, or agreement. Instances of E41 Appellation are cultural constructs; as such, they have a context, a history, and a use in time and space by some group of users. A given instance of E41 Appellation can have alternative forms, i.e., other instances of E41 Appellation that are always regarded as equivalent independent from the thing it denotes. 
+
+Specific subclasses of E41 Appellation should be used when instances of E41 Appellation of a characteristic form are used for particular objects. Instances of E49 Time Appellation, for example, which take the form of instances of E50 Date, can be easily recognised.
+
+E41 Appellation should not be confused with the act of naming something. Cf. E15 Identifier Assignment 
+
+Examples:
+- \"Martin\" 
+- \"the Forth Bridge\"
+- \"the Merchant of Venice\" (E35)
+- \"Spigelia marilandica (L.) L.\" [not the species, just the name]
+- \"information science\" [not the science itself, but the name through which we refer to it in an English-speaking context] 
+- “安” [Chinese \"an\", meaning \"peace\"]
+
+In First Order Logic:
+E41(x) ⊃ E90(x)"""@en ;
+                    rdfs:label "E41 Appellation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E42_Identifier
+crm:E42_Identifier rdf:type owl:Class ;
+                   rdfs:subClassOf crm:E44_Place_Appellation ;
+                   rdfs:comment """Scope note:
+This class comprises strings or codes assigned to instances of E1 CRM Entity in order to identify them uniquely and permanently within the context of one or more organisations. Such codes are often known as inventory numbers, registration codes, etc. and are typically composed of alphanumeric sequences. The class E42 Identifier is not normally used for machine-generated identifiers used for automated processing unless these are also used by human agents.
+
+Examples:
+- \"MM.GE.195\"
+- \"13.45.1976\"
+- \"OXCMS: 1997.4.1\"
+- ISSN \"0041-5278\"
+- ISRC \"FIFIN8900116\"
+- Shelf mark \"Res 8 P 10\"
+- \"Guillaume de Machaut (1300?-1377)\" [a controlled personal name heading that follows
+the French rules]
+
+In First Order Logic:
+E42(x) ⊃ E41(x)"""@en ;
+                   rdfs:label "E42 Identifier"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E44_Place_Appellation
+crm:E44_Place_Appellation rdf:type owl:Class ;
+                          rdfs:subClassOf crm:E41_Appellation ;
+                          rdfs:comment """Scope note:
+This class comprises any sort of identifier characteristically used to refer to an E53 Place.
+
+Instances of E44 Place Appellation may vary in their degree of precision and their meaning may vary over time - the same instance of E44 Place Appellation may be used to refer to several places, either because of cultural shifts, or because objects used as reference points have moved around. Instances of E44 Place Appellation can be extremely varied in form: postal addresses, instances of E47 Spatial Coordinate, and parts of buildings can all be considered as instances of E44 Place Appellation.
+
+Examples:
+- \"Vienna\"
+- \"CH-1211, Genève\"
+- \"Aquae Sulis Minerva\"
+- \"Bath\"
+- \"Cambridge\"
+- \"the Other Place\"
+- \"the City\"
+
+In First Order Logic:
+E44(x) ⊃ E41(x)"""@en ;
+                          rdfs:label "E44 Place Appellation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E46_Section_Definition
+crm:E46_Section_Definition rdf:type owl:Class ;
+                           rdfs:subClassOf crm:E44_Place_Appellation ;
+                           rdfs:comment """Scope note:
+This class comprises areas of objects referred to in terms specific to the general geometry or structure of its kind.
+
+The 'prow' of the boat, the 'frame' of the picture, the 'front' of the building are all instances of E46 Section Definition. The class highlights the fact that parts of objects can be treated as locations. This holds in particular for features without natural boundaries, such as the \"head\" of a marble statue made out of one block (cf. E53 Place). In answer to the question 'where is the signature?' one might reply 'on the lower left corner'. (Section Definition is closely related to the term \"segment\" in Gerstl, P.& Pribbenow, S, 1996 \" A conceptual theory of part – whole relations and its applications\", Data & Knowledge Engineering 20 305-322, North Holland- Elsevier).
+
+Examples:
+- \"the entrance lobby to the Ripley Center\"
+- \"the poop deck of H.M.S Victory\"
+- \"the Venus de Milo's left buttock\"
+- \"left inner side of my box\"
+
+In First Order Logic:
+E46(x) ⊃ E44(x)"""@en ,
+                                        "the official name of thr place under the current administration" ;
+                           rdfs:label "E46 Section Definition"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E47_Spatial_Coordinates
+crm:E47_Spatial_Coordinates rdf:type owl:Class ;
+                            rdfs:subClassOf crm:E44_Place_Appellation ;
+                            rdfs:comment """Scope note:
+This class comprises the textual or numeric information required to locate specific instances of E53 Place within schemes of spatial identification.
+
+Coordinates are a specific form of E44 Place Appellation, that is, a means of referring to a particular E53 Place. Coordinates are not restricted to longitude, latitude and altitude. Any regular system of reference that maps onto an E19 Physical Object can be used to generate coordinates.
+
+Examples:
+- \"6°5'29\"N 45°12'13\"W\"
+- \"Black queen's bishop 4\" [chess coordinate].
+
+In First Order Logic:
+E47(x) ⊃ E44(x)"""@en ;
+                            rdfs:label "E47 Spatial Coordinates"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E48_Place_Name
+crm:E48_Place_Name rdf:type owl:Class ;
+                   rdfs:subClassOf crm:E44_Place_Appellation ;
+                   rdfs:comment """Scope note:
+This class comprises particular and common forms of E44 Place Appellation.
+
+Place Names may change their application over time: the name of an E53 Place may change, and a name may be reused for a different E53 Place. Instances of E48 Place Name are typically subject to place name gazetteers.
+
+Examples:
+- \"Greece\"
+- \"Athens\"
+- \"Geneva\"
+- \"Lac Léman\"
+
+In First Order Logic:
+E48(x) ⊃ E44(x)"""@en ,
+                                "If one place has more than one name, collect other names here" ;
+                   rdfs:label "E48 Place Name"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E49_Time_Appellation
+crm:E49_Time_Appellation rdf:type owl:Class ;
+                         rdfs:subClassOf crm:E41_Appellation ;
+                         rdfs:comment """Scope note:
+This class comprises all forms of names or codes, such as historical periods, and dates, which are characteristically used to refer to a specific E52 Time-Span.
+
+The instances of E49 Time Appellation may vary in their degree of precision, and they may be relative to other time frames, \"Before Christ\" for example. Instances of E52 Time-Span are often defined by reference to a cultural period or an event e.g. 'the duration of the Ming Dynasty'.
+
+Examples:
+- \"Meiji\" [Japanese term for a specific time-span]
+- \"1st half of the XX century\"
+- \"Quaternary\"
+- \"1215 Hegira\" [a date in the Islamic calendar]
+- \"Last century\"
+
+In First Order Logic:
+E49(x) ⊃ E41(x)"""@en ;
+                         rdfs:label "E49 Time Appellation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E4_Period
+crm:E4_Period rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.HexiCorridorPoem.com#E2_Temporal_Entity> ;
+              rdfs:comment """Scope note:
+This class comprises sets of coherent phenomena or cultural manifestations occurring in time and space.
+
+It is the social or physical coherence of these phenomena that identify an E4 Period and not the associated spatiotemporal extent. This extent is only the “ground” or space in an abstract physical sense that the actual process of growth, spread and retreat has covered. Consequently, different periods can overlap and coexist in time and space, such as when a nomadic culture exists in the same area and time as a sedentary culture. This also means that overlapping land use rights, common among first nations, amounts to overlapping periods.
+
+Often, this class is used to describe prehistoric or historic periods such as the “Neolithic Period”, the “Ming Dynasty” or the “McCarthy Era”, but also geopolitical units and activities of settlements are regarded as special cases of E4 Period. However, there are no assumptions about the scale of the associated phenomena. In particular all events are seen as synthetic processes consisting of coherent phenomena. Therefore E4 Period is a superclass of E5 Event. For example, a modern clinical E67 Birth can be seen as both an atomic E5 Event and as an E4 Period that consists of multiple activities performed by multiple instances of E39 Actor.
+
+As the actual extent of an E4 Period in spacetime we regard the trajectories of the participating physical things during their participation in an instance of E4 Period. This includes the open spaces via which these things have interacted and the spaces by which they had the potential to interact during that period or event in the way defined by the type of the respective period or event. Examples include the air in a meeting room transferring the voices of the participants. Since these phenomena are fuzzy, we assume the spatiotemporal extent to be contiguous, except for cases of phenomena spreading out over islands or other separated areas, including geopolitical units distributed over disconnected areas such as islands or colonies.
+
+Whether the trajectories necessary for participants to travel between these areas are regarded as part of the spatiotemporal extent or not has to be decided in each case based on a concrete analysis, taking use of the sea for other purposes than travel, such as fishing, into consideration. One may also argue that the activities to govern disconnected areas imply travelling through spaces connecting them and that these areas hence are spatially connected in a way, but it appears counterintuitive to consider for instance travel routes in international waters as extensions of geopolitical units.
+
+Consequently, an instance of E4 Period may occupy a number of disjoint spacetime volumes, however there must not be a discontinuity in the timespan covered by these spacetime volumes. This means that an instance of E4 Period must be contiguous in time. If it has ended in all areas, it has ended as a whole. However it may end in one area before another, such as in the Polynesian migration, and it continues as long as it is ongoing in at least one area.
+
+We model E4 Period as a subclass of E2 Temporal Entity and of E92 Spacetime volume. The latter is intended as a phenomenal spacetime volume as defined in CRMgeo (Doerr and Hiebel 2013). By virtue of this multiple inheritance we can discuss the physical extent of an E4 Period without representing each instance of it together with an instance of its associated spacetime volume. This model combines two quite different kinds of substance: an instance of E4 Period is a phenomena while a spacetime volume is an aggregation of points in spacetime. However, the real spatiotemporal extent of an instance of E4 Period is regarded to be unique to it due to all its details and fuzziness; its identity and existence depends uniquely on the identity of the instance of E4 Period. Therefore this multiple inheritance is unambiguous and effective and furthermore corresponds to the intuitions of natural language.
+
+There are two different conceptualisations of ‘artistic style’, defined either by physical features or by historical context. For example, “Impressionism” can be viewed as a period lasting from approximately 1870 to 1905 during which paintings with particular characteristics were produced by a group of artists that included (among others) Monet, Renoir, Pissarro, Sisley and Degas. Alternatively, it can be regarded as a style applicable to all paintings sharing the characteristics of the works produced by the Impressionist painters, regardless of historical context. The first interpretation is an instance of E4 Period, and the second defines morphological object types that fall under E55 Type.
+
+Another specific case of an E4 Period is the set of activities and phenomena associated with a settlement, such as the populated period of Nineveh.
+
+Examples:
+Jurassic
+European Bronze Age
+Italian Renaissance
+Thirty Years War
+Sturm und Drang
+Cubism
+
+In First Order Logic: 
+E4(x) ⊃ E2(x)
+E4(x) ⊃ E92(x)"""@en ,
+                           "dynasty duration period (pre-Tang, Tang, Wudai, Song, Yuan, Ming)" ;
+              rdfs:label "E4 Period"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span
+crm:E52_Time-Span rdf:type owl:Class ;
+                  rdfs:subClassOf crm:E1_CRM_Entity ;
+                  rdfs:comment """Scope note:
+This class comprises abstract temporal extents, in the sense of Galilean physics, having a beginning, an end and a duration.
+
+Time Span has no other semantic connotations. Time-Spans are used to define the temporal extent of instances of E4 Period, E5 Event and any other phenomena valid for a certain time. An E52 Time-Span may be identified by one or more instances of E49 Time Appellation.
+
+Since our knowledge of history is imperfect, instances of E52 Time-Span can best be considered as approximations of the actual Time-Spans of temporal entities. The properties of E52 Time-Span are intended to allow these approximations to be expressed precisely.  An extreme case of approximation, might, for example, define an E52 Time-Span having unknown beginning, end and duration. Used as a common E52 Time-Span for two events, it would nevertheless define them as being simultaneous, even if nothing else was known.
+
+Automatic processing and querying of instances of E52 Time-Span is facilitated if data can be parsed into an E61 Time Primitive.
+
+Examples:
+- 1961
+- from 12-17-1993 to 12-8-1996
+- 14h30 - 16h22 4th July 1945
+- 9.30 am 1.1.1999 to 2.00 pm 1.1.1999
+- duration of the Ming Dynasty
+
+In First Order Logic:
+E52(x) ⊃ E1(x)"""@en ,
+                               "dynasty duration and specific year" ;
+                  rdfs:label "E52 Time-Span"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E53_Place
+crm:E53_Place rdf:type owl:Class ;
+              rdfs:subClassOf crm:E1_CRM_Entity ;
+              rdfs:comment """Scope note:
+This class comprises extents in space, in particular on the surface of the earth, in the pure sense of physics: independent from temporal phenomena and matter.
+
+The instances of E53 Place are usually determined by reference to the position of \"immobile\" objects such as buildings, cities, mountains, rivers, or dedicated geodetic marks. A Place can be determined by combining a frame of reference and a location with respect to this frame. It may be identified by one or more instances of E44 Place Appellation.
+
+It is sometimes argued that instances of E53 Place are best identified by global coordinates or absolute reference systems. However, relative references are often more relevant in the context of cultural documentation and tend to be more precise. In particular, we are often interested in position in relation to large, mobile objects, such as ships. For example, the Place at which Nelson died is known with reference to a large mobile object – H.M.S Victory. A resolution of this Place in terms of absolute coordinates would require knowledge of the movements of the vessel and the precise time of death, either of which may be revised, and the result would lack historical and cultural relevance.
+
+Any object can serve as a frame of reference for E53 Place determination. The model foresees the notion of a \"section\" of an E19 Physical Object as a valid E53 Place determination.
+
+Examples:
+- the extent of the UK in the year 2003
+- the position of the hallmark on the inside of my wedding ring
+- the place referred to in the phrase: \"Fish collected at three miles north of the confluence of the Arve and the Rhone\"
+- here -> <-
+
+In First Order Logic:
+E53(x) ⊃ E1(x)"""@en ,
+                           "Hexi places, West region places, Central plain places" ;
+              rdfs:label "E53 Place"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E55_Type
+crm:E55_Type rdf:type owl:Class ;
+             rdfs:subClassOf crm:E28_Conceptual_Object ;
+             rdfs:comment """Scope note:
+This class comprises concepts denoted by terms from thesauri and controlled vocabularies used to characterize and classify instances of CRM classes. Instances of E55 Type represent concepts  in contrast to instances of E41 Appellation which are used to name instances of CRM classes.
+
+E55 Type is the CRM's interface to domain specific ontologies and thesauri. These can be represented in the CRM as subclasses of E55 Type, forming hierarchies of terms, i.e. instances of E55 Type linked via P127 has broader  term (has narrower term). Such hierarchies may be extended with additional properties.
+
+Examples:
+- weight, length, depth [types of E54]
+- portrait, sketch, animation [types of E38]
+- French, English, German [E56]
+- excellent, good, poor [types of E3]
+- Ford Model T, chop stick [types of E22]
+- cave, doline, scratch [types of E26]
+- poem, short story [types of E33]
+- wedding, earthquake, skirmish [types of E5]
+
+In First Order Logic:
+E55(x) ⊃ E28(x)"""@en ,
+                          """1) Place type: Hexi places, West region places, Central plain places;
+2) Poem type: Shi, Ci, Song;
+3) Length type: 5-character, 7-character, irregular;
+4) Imagery type: ProductImagery, SeasonImagery, SceneryImagery, PlantImagery, AnimalImagery, CharacterImagery, OtherImagery;
+5) spciality of Actor: civil, ruler, officer, monk, others.""" ;
+             rdfs:label "E55 Type"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E5_Event
+crm:E5_Event rdf:type owl:Class ;
+             rdfs:subClassOf crm:E4_Period ;
+             rdfs:comment """E5 Event is an 'instantaneous' change of state. At a fine level, the E5 Event can be analysed into its component phenomena within a space and time frame, and as such can be seen as an E4 Period. The reverse is not necessarily the case: not all instances of E4 Period give rise to a noteworthy change of state.
+
+Examples:
+- the birth of Cleopatra (E67)
+- the destruction of Herculaneum by volcanic eruption in 79 AD (E6)
+- World War II (E7)
+- the Battle of Stalingrad (E7)
+- the Yalta Conference (E7)
+- my birthday celebration 28-6-1995 (E7)
+- the falling of a tile from my roof last Sunday
+- the CIDOC Conference 2003 (E7)
+
+In First Order Logic:
+E5(x) ⊃ E4(x)"""@en ;
+             rdfs:label "E5 Event"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E63_Beginning_of_Existence
+crm:E63_Beginning_of_Existence rdf:type owl:Class ;
+                               rdfs:subClassOf crm:E5_Event ;
+                               rdfs:comment """Scope note:
+This class comprises events that bring into existence any E77 Persistent Item.
+
+It may be used for temporal reasoning about things (intellectual products, physical items, groups of people, living beings) beginning to exist; it serves as a hook for determination of a terminus post quem and ante quem.
+
+Examples:
+- the birth of my child
+- the birth of Snoopy, my dog
+- the calving of the iceberg that sank the Titanic
+- the construction of the Eiffel Tower
+
+In First Order Logic:
+E63(x) ⊃ E5(x)"""@en ,
+                                            "beginning of one dynasty" ;
+                               rdfs:label "E63 Beginning of Existence"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E64_End_of_Existence
+crm:E64_End_of_Existence rdf:type owl:Class ;
+                         rdfs:subClassOf crm:E5_Event ;
+                         rdfs:comment "end of the dynasty and death of the poet (historical figures)" ;
+                         rdfs:label "E64 End of Existence" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E65_Creation
+crm:E65_Creation rdf:type owl:Class ;
+                 rdfs:subClassOf crm:E63_Beginning_of_Existence ;
+                 rdfs:comment """Scope note:
+This class comprises events that result in the creation of conceptual items or immaterial products, such as legends, poems, texts, music, images, movies, laws, types etc.
+
+Examples:
+- the framing of the U.S. Constitution
+- the drafting of U.N. resolution 1441
+
+In First Order Logic:
+E65(x) ⊃ E7(x)
+E65(x) ⊃ E63(x)"""@en ,
+                              "creating of one poem" ;
+                 rdfs:label "E65 Creation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E67_Birth
+crm:E67_Birth rdf:type owl:Class ;
+              rdfs:subClassOf crm:E63_Beginning_of_Existence ;
+              rdfs:comment """Scope note:
+This class comprises the births of human beings. E67 Birth is a biological event focussing on the context of people coming into life. (E63 Beginning of Existence comprises the coming into life of any living beings).
+
+Twins, triplets etc. are brought into life by the same E67 Birth event. The introduction of the E67 Birth event as a documentation element allows the description of a range of family relationships in a simple model. Suitable extensions may describe more details and the complexity of motherhood with the intervention of modern medicine. In this model, the biological father is not seen as a necessary participant in the E67 Birth event.
+
+Examples:
+- the birth of Alexander the Great
+
+In First Order Logic:
+E67(x) ⊃ E63(x)"""@en ,
+                           "birth of one poet" ;
+              rdfs:label "E67 Birth"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E70_Thing
+crm:E70_Thing rdf:type owl:Class ;
+              rdfs:subClassOf crm:E77_Persistent_Item ;
+              rdfs:comment """Scope note:
+This general class comprises discrete, identifiable, instances of E77 Persistent Item that are documented as single units, that either consist of matter or depend on being carried by matter and are characterized by relative stability. 
+
+They may be intellectual products or physical things. They may for instance have a solid physical form, an electronic encoding, or they may be a logical concept or structure.
+
+Examples:
+- my photograph collection (E78)
+- the bottle of milk in my refrigerator (E22)
+- the plan of the Strassburger Muenster (E29)
+- the thing on the top of Otto Hahn's desk (E19)
+- the form of the no-smoking sign (E36)
+- the cave of Dirou, Mani, Greece (E27)
+
+In First Order Logic:
+E70(x) ⊃ E77(x)"""@en ;
+              rdfs:label "E70 Thing"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E71_Human-Made_Thing
+crm:E71_Human-Made_Thing rdf:type owl:Class ;
+                         rdfs:subClassOf crm:E70_Thing ;
+                         rdfs:comment """Scope note:
+This class comprises discrete, identifiable man-made items that are documented as single units.
+
+These items are either intellectual products or man-made physical things, and are characterized by relative stability. They may for instance have a solid physical form, an electronic encoding, or they may be logical concepts or structures.
+
+Examples:
+- Beethoven's 5th Symphony (E73)
+- Michelangelo's David
+- Einstein's Theory of General Relativity (E73)
+- the taxon 'Fringilla coelebs Linnaeus, 1758' (E55)
+
+In First Order Logic:
+E71(x) ⊃ E70(x)"""@en ;
+                         rdfs:label "E71 Human-Made Thing"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object
+crm:E73_Information_Object rdf:type owl:Class ;
+                           rdfs:subClassOf crm:E89_Propositional_Object ,
+                                           crm:E90_Symbolic_Object ;
+                           rdfs:comment """Scope note:
+This class comprises identifiable immaterial items, such as a poems, jokes, data sets, images, texts, multimedia objects, procedural prescriptions, computer program code, algorithm or mathematical formulae, that have an objectively recognizable structure and are documented as single units.
+The encoding structure known as a \"named graph\" also falls under this class, so that each \"named graph\" is an instance of an E73 Information Object.
+
+An E73 Information Object does not depend on a specific physical carrier, which can include human memory, and it can exist on one or more carriers simultaneously.
+Instances of E73 Information Object of a linguistic nature should be declared as instances of the E33 Linguistic Object subclass. Instances of E73 Information Object of a documentary nature should be declared as instances of the E31 Document subclass. Conceptual items such as types and classes are not instances of E73 Information Object, nor are ideas without a reproducible expression.
+
+Examples:
+- image BM000038850.JPG from the Clayton Herbarium in London
+- E. A. Poe's \"The Raven\"
+- the movie \"The Seven Samurai\" by Akira Kurosawa
+- the Maxwell Equations
+- The Getty AAT as published as Linked Open Data, accessed 1/10/2014
+
+In First Order Logic: 
+E73(x) ⊃ E89(x)  
+E73(x) ⊃ E90(x)"""@en ;
+                           rdfs:label "E73 Information Object"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E75_Conceptual_Object_Appellation
+crm:E75_Conceptual_Object_Appellation rdf:type owl:Class ;
+                                      rdfs:subClassOf crm:E41_Appellation ;
+                                      rdfs:comment """Scope note:
+This class comprises all appellations specific to intellectual products or standardized patterns.
+This class comprises appellations that are by their form or syntax specific to identifying instances of
+E28 Conceptual Object, such as intellectual products, standardized patterns etc.
+
+
+Examples:
+- \"ISBN 3-7913-1418-1\"
+- \"ISO 2788-1986 (F)\"
+- \"DOI=10.1109/MIS.2007.103\"
+
+In First Order Logic:
+E75(x) ⊃ E41(x)"""@en ;
+                                      rdfs:label "E75 Conceptual Object Appellation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E77_Persistent_Item
+crm:E77_Persistent_Item rdf:type owl:Class ;
+                        rdfs:subClassOf crm:E1_CRM_Entity ;
+                        rdfs:comment """Scope note:
+This class comprises items that have a persistent identity, sometimes known as \"endurants\" in philosophy.
+
+They can be repeatedly recognized within the duration of their existence by identity criteria rather than by continuity or observation. Persistent Items can be either physical entities, such as people, animals or things, or conceptual entities such as ideas, concepts, products of the imagination or common names. 
+
+The criteria that determine the identity of an item are often difficult to establish -; the decision depends largely on the judgement of the observer. For example, a building is regarded as no longer existing if it is dismantled and the materials reused in a different configuration. On the other hand, human beings go through radical and profound changes during their life-span, affecting both material composition and form, yet preserve their identity by other criteria. Similarly, inanimate objects may be subject to exchange of parts and matter. The class E77 Persistent Item does not take any position about the nature of the applicable identity criteria and if actual knowledge about identity of an instance of this class exists. There may be cases, where the identity of an E77 Persistent Item is not decidable by a certain state of knowledge.
+The main classes of objects that fall outside the scope the E77 Persistent Item class are temporal objects such as periods, events and acts, and descriptive properties.
+
+Examples:
+- Leonardo da Vinci
+- Stonehenge
+- the hole in the ozone layer
+- the First Law of Thermodynamics
+- the Bermuda Triangle
+
+In First Order Logic:
+E77(x) ⊃ E1(x)"""@en ;
+                        rdfs:label "E77 Persistent Item"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E7_Activity
+crm:E7_Activity rdf:type owl:Class ;
+                rdfs:subClassOf crm:E5_Event ;
+                rdfs:comment "One poet was visiting Hexi places or staying away from Hexi places" ;
+                rdfs:label "E7 Activity" .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E82_Actor_Appellation
+crm:E82_Actor_Appellation rdf:type owl:Class ;
+                          rdfs:subClassOf crm:E41_Appellation ;
+                          rdfs:comment """Scope note:
+This class comprises any sort of name, number, code or symbol characteristically used to identify an E39 Actor.
+An E39 Actor will typically have more than one E82 Actor Appellation, and instances of E82 Actor Appellation in turn may have alternative representations. The distinction between corporate and personal names, which is particularly important in library applications, should be made by explicitly linking the E82 Actor Appellation to an instance of either E21 Person or E74 Group/E40 Legal Body. If this is not possible, the distinction can be made through the use of the P2 has type mechanism.
+
+Examples:
+- \"John Doe\"
+- \"Doe, J\"
+- \"the U.S. Social Security Number 246-14-2304\"
+- \"the Artist Formerly Known as Prince\"
+- \"the Master of the Flemish Madonna\"
+- \"Raphael's Workshop\"
+- \"the Brontë Sisters\"
+- \"ICOM\"
+- \"International Council of Museums\"
+
+In First Order Logic:
+E82(x) ⊃ E41(x)"""@en ,
+                                       "if one poet or historical figure has more than one commonly used name, collect other names here" ;
+                          rdfs:label "E82 Actor Appellation"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object
+crm:E89_Propositional_Object rdf:type owl:Class ;
+                             rdfs:subClassOf crm:E28_Conceptual_Object ;
+                             rdfs:comment """Scope note:
+This class comprises immaterial items, including but not limited to stories, plots, procedural prescriptions, algorithms, laws of physics or images that are, or represent in some sense, sets of propositions about real or imaginary things and that are documented as single units or serve as topic of discourse.
+
+This class also comprises items that are \"about\" something in the sense of a subject. In the wider sense, this class includes expressions of psychological value such as non-figural art and musical themes. However, conceptual items such as types and classes are not instances of E89 Propositional Object. This should not be confused with the definition of a type, which is indeed an instance of E89 Propositional Object.
+
+Examples:
+- Maxwell's Equations
+- The ideational contents of Aristotle's book entitled 'Metaphysics' as rendered in the Greek texts translated in … Oxford edition…
+- The underlying prototype of any \"no-smoking\" sign (E36)
+- The common ideas of the plots of the movie \"The Seven Samurai\" by Akira Kurosawa and the movie \"The Magnificent Seven\" by John Sturges
+- The image content of the photo of the Allied Leaders at Yalta published by UPI, 1945 (E38)
+
+In First Order Logic:
+E89(x) ⊃ E28(x)"""@en ;
+                             rdfs:label "E89 Propositional Object"@en .
+
+
+###  http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object
+crm:E90_Symbolic_Object rdf:type owl:Class ;
+                        rdfs:subClassOf crm:E28_Conceptual_Object ;
+                        rdfs:comment """Scope note:
+This class comprises identifiable symbols and any aggregation of symbols, such as characters, identifiers, traffic signs, emblems, texts, data sets, images, musical scores, multimedia objects, computer program code or mathematical formulae that have an objectively recognizable structure and that are documented as single units. 
+
+It includes sets of signs of any nature, which may serve to designate something, or to communicate some propositional content.
+
+An instance of E90 Symbolic Object does not depend on a specific physical carrier, which can include human memory, and it can exist on one or more carriers simultaneously. An instance of E90 Symbolic Object may or may not have a specific meaning, for example an arbitrary character string. 
+
+In some cases, the content of an instance of E90 Symbolic Object may completely be represented by a serialized digital content model, such as a sequence of ASCII-encoded characters, an XML or HTML document, or a TIFF image. The property P3 has note allows for the description of this content model. In order to disambiguate which symbolic level is the carrier of the meaning, the property P3.1 has type can be used to specify the encoding (e.g. \"bit\", \"Latin character\", RGB pixel). 
+
+Examples:
+- 'ecognizabl' 
+- The \"no-smoking\" sign (E36) 
+- \"BM000038850.JPG\" (E75) 
+- image BM000038850.JPG from the Clayton Herbarium in London (E38) 
+- The distribution of form, tone and colour found on Leonardo da Vinci's painting named \"Mona Lisa\" in daylight (E38)
+- The Italian text of Dante's \"Divina Commedia\" as found in the authoritative critical edition La Commedia secondo l'antica vulgata a cura di Giorgio Petrocchi, Milano: Mondadori, 1966-67 (= Le Opere di Dante Alighieri, Edizione Nazionale a cura della Società Dantesca Italiana, VII, 1-4) (E33)
+
+In First Order Logic:
+E90(x) ⊃ E28(x)
+E90(x) ⊃ E72(x)"""@en ;
+                        rdfs:label "E90 Symbolic Object"@en .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.HexiCorridorPoem.com#AncientCatelogue
+<http://www.HexiCorridorPoem.com#AncientCatelogue> rdf:type owl:NamedIndividual ,
+                                                            crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#Birth_of_the_poet_Liu_Xiaowei
+<http://www.HexiCorridorPoem.com#Birth_of_the_poet_Liu_Xiaowei> rdf:type owl:NamedIndividual ,
+                                                                         crm:E67_Birth ;
+                                                                crm:P4_has_time_span_of :AD496 .
+
+
+###  http://www.HexiCorridorPoem.com#CharacterImagery
+<http://www.HexiCorridorPoem.com#CharacterImagery> rdf:type owl:NamedIndividual ,
+                                                            crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#Collection_of_Liu_Suzhi
+<http://www.HexiCorridorPoem.com#Collection_of_Liu_Suzhi> rdf:type owl:NamedIndividual ,
+                                                                   crm:E31_Document ;
+                                                          crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#AncientCatelogue> .
+
+
+###  http://www.HexiCorridorPoem.com#HXP0019
+<http://www.HexiCorridorPoem.com#HXP0019> rdf:type owl:NamedIndividual ,
+                                                   crm:E42_Identifier .
+
+
+###  http://www.HexiCorridorPoem.com#Han
+<http://www.HexiCorridorPoem.com#Han> rdf:type owl:NamedIndividual ,
+                                               crm:E4_Period ;
+                                      crm:P4_has_time_span_of :between_BC202_and_AD220 .
+
+
+###  http://www.HexiCorridorPoem.com#Jinniu_River
+<http://www.HexiCorridorPoem.com#Jinniu_River> rdf:type owl:NamedIndividual ,
+                                                        crm:E46_Section_Definition ;
+                                               crm:P1_identifies <http://www.HexiCorridorPoem.com#Long_River> .
+
+
+###  http://www.HexiCorridorPoem.com#Li_Guang
+<http://www.HexiCorridorPoem.com#Li_Guang> rdf:type owl:NamedIndividual ,
+                                                    crm:E39_Actor ;
+                                           crm:P11_participated_in <http://www.HexiCorridorPoem.com#Li_Guang_difficult_to_seal> ;
+                                           foaf:gender "male"^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Li_Guang_difficult_to_seal
+<http://www.HexiCorridorPoem.com#Li_Guang_difficult_to_seal> rdf:type owl:NamedIndividual ,
+                                                                      crm:E5_Event ;
+                                                             crm:P1_is_identified_by :between_BC166_and_BC119 ;
+                                                             crm:P2_has_type :allusion ;
+                                                             schema:description "Li Guang is a famous general of the Western Han Dynasty. High achievements can not be granted marquis."^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Liu_Suzhi
+<http://www.HexiCorridorPoem.com#Liu_Suzhi> rdf:type owl:NamedIndividual ,
+                                                     crm:E82_Actor_Appellation ;
+                                            crm:P1_identifies <http://www.HexiCorridorPoem.com#Liu_Xiaowei> .
+
+
+###  http://www.HexiCorridorPoem.com#Liu_Xiaowei
+<http://www.HexiCorridorPoem.com#Liu_Xiaowei> rdf:type owl:NamedIndividual ,
+                                                       crm:E39_Actor ;
+                                              crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#Liu_Suzhi> ;
+                                              crm:P2_has_type <http://www.HexiCorridorPoem.com#officer> ;
+                                              crm:P92_was_brought_into_existence_by <http://www.HexiCorridorPoem.com#Birth_of_the_poet_Liu_Xiaowei> ;
+                                              foaf:gender "male"^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Long_Mountain
+<http://www.HexiCorridorPoem.com#Long_Mountain> rdf:type owl:NamedIndividual ,
+                                                         crm:E53_Place ;
+                                                crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#Longtou> ;
+                                                schema:description "The  mountain is located in northwest Shaanxi Province."^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Long_River
+<http://www.HexiCorridorPoem.com#Long_River> rdf:type owl:NamedIndividual ,
+                                                      crm:E53_Place ;
+                                             crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#Jinniu_River> ;
+                                             schema:description "Long river  generally refers to the Jinniu River.  Jinniu River, weihe river system hulu river tributaries, known as long river.  Originated in tongwei County northwest Huajialing south foot legerdemain ditch, the territory of the main stream 48-65 kilometers long, basin area of 580.65 square kilometers."^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Long_sword_of_Han_dynasty_found_in_Changxing_in_1976
+<http://www.HexiCorridorPoem.com#Long_sword_of_Han_dynasty_found_in_Changxing_in_1976> rdf:type owl:NamedIndividual ,
+                                                                                                crm:E22_Human-Made_Object ;
+                                                                                       crm:P130_shows_features_of <http://www.HexiCorridorPoem.com#sword> .
+
+
+###  http://www.HexiCorridorPoem.com#Longtou
+<http://www.HexiCorridorPoem.com#Longtou> rdf:type owl:NamedIndividual ,
+                                                   crm:E48_Place_Name ;
+                                          crm:P1_identifies <http://www.HexiCorridorPoem.com#Long_Mountain> .
+
+
+###  http://www.HexiCorridorPoem.com#Loulan
+<http://www.HexiCorridorPoem.com#Loulan> rdf:type owl:NamedIndividual ,
+                                                  crm:E53_Place ;
+                                         schema:description "In the Han Dynasty, the western Region was called the State of Shanshan, located in the southeast of Shanshan County, Xinjiang Uygur Autonomous Region.  During the Western Han Dynasty, King Loulan conspired with xiongnu and repeatedly killed envoys in the Western regions of the Han Dynasty."^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#ProductImagery
+<http://www.HexiCorridorPoem.com#ProductImagery> rdf:type owl:NamedIndividual ,
+                                                          crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#RegionalCatelogue
+<http://www.HexiCorridorPoem.com#RegionalCatelogue> rdf:type owl:NamedIndividual ,
+                                                             crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#River_of_Longtou
+<http://www.HexiCorridorPoem.com#River_of_Longtou> rdf:type owl:NamedIndividual ,
+                                                            crm:E35_Title .
+
+
+###  http://www.HexiCorridorPoem.com#SceneryImagery
+<http://www.HexiCorridorPoem.com#SceneryImagery> rdf:type owl:NamedIndividual ,
+                                                          crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#Selected_poems_on_Long_area
+<http://www.HexiCorridorPoem.com#Selected_poems_on_Long_area> rdf:type owl:NamedIndividual ,
+                                                                       crm:E31_Document ;
+                                                              crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#RegionalCatelogue> .
+
+
+###  http://www.HexiCorridorPoem.com#Shi
+<http://www.HexiCorridorPoem.com#Shi> rdf:type owl:NamedIndividual ,
+                                               crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#South_Liang
+<http://www.HexiCorridorPoem.com#South_Liang> rdf:type owl:NamedIndividual ,
+                                                       crm:E4_Period ;
+                                              crm:P120_occurs_after <http://www.HexiCorridorPoem.com#Han> ;
+                                              crm:P4_has_time_span_of :between_AD502_and_AD557 .
+
+
+###  http://www.HexiCorridorPoem.com#Zhi_Zhi
+<http://www.HexiCorridorPoem.com#Zhi_Zhi> rdf:type owl:NamedIndividual ,
+                                                   crm:E39_Actor ;
+                                          crm:P11_participated_in <http://www.HexiCorridorPoem.com#Zhi_Zhi_betrayed_Han_dynasty> ;
+                                          foaf:gender "male"^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#Zhi_Zhi_betrayed_Han_dynasty
+<http://www.HexiCorridorPoem.com#Zhi_Zhi_betrayed_Han_dynasty> rdf:type owl:NamedIndividual ,
+                                                                        crm:E5_Event ;
+                                                               crm:P2_has_type :allusion ;
+                                                               crm:P4_has_time_span_of :between_BC48_and_BC36 ;
+                                                               schema:description "Zhi Zhi is a chief of the Xiongnu. In the first year of Wufeng, Emperor Xuan of the Han Dynasty, he chose to be independent as Zhizhi Gudu Chanyu, then he rebelled against the Han Dynasty. In the third year of Jianzhao, he was attacked and killed by Chen Tang, the vice colonel of the western regions."^^rdfs:Literal .
+
+
+###  http://www.HexiCorridorPoem.com#cavalry_of_Hu
+<http://www.HexiCorridorPoem.com#cavalry_of_Hu> rdf:type owl:NamedIndividual ,
+                                                         crm:E90_Symbolic_Object ;
+                                                crm:P2_has_type <http://www.HexiCorridorPoem.com#CharacterImagery> ,
+                                                                :imagery .
+
+
+###  http://www.HexiCorridorPoem.com#coat
+<http://www.HexiCorridorPoem.com#coat> rdf:type owl:NamedIndividual ,
+                                                crm:E90_Symbolic_Object ;
+                                       crm:P2_has_type <http://www.HexiCorridorPoem.com#ProductImagery> ,
+                                                       :imagery .
+
+
+###  http://www.HexiCorridorPoem.com#conscripts_joined_the_army_and_guarded_Long_Mountain
+<http://www.HexiCorridorPoem.com#conscripts_joined_the_army_and_guarded_Long_Mountain> rdf:type owl:NamedIndividual ,
+                                                                                                crm:E7_Activity .
+
+
+###  http://www.HexiCorridorPoem.com#death_of_the_poet_Liu_Xiaowei
+<http://www.HexiCorridorPoem.com#death_of_the_poet_Liu_Xiaowei> rdf:type owl:NamedIndividual ,
+                                                                         crm:E64_End_of_Existence ;
+                                                                crm:P14_carried_out_by <http://www.HexiCorridorPoem.com#Liu_Xiaowei> ;
+                                                                crm:P4_has_time_span_of :AD548 .
+
+
+###  http://www.HexiCorridorPoem.com#flows_with_sand
+<http://www.HexiCorridorPoem.com#flows_with_sand> rdf:type owl:NamedIndividual ,
+                                                           crm:E90_Symbolic_Object ;
+                                                  crm:P2_has_type <http://www.HexiCorridorPoem.com#SceneryImagery> ,
+                                                                  :imagery .
+
+
+###  http://www.HexiCorridorPoem.com#hook
+<http://www.HexiCorridorPoem.com#hook> rdf:type owl:NamedIndividual ,
+                                                crm:E90_Symbolic_Object ;
+                                       crm:P2_has_type <http://www.HexiCorridorPoem.com#ProductImagery> ,
+                                                       :imagery .
+
+
+###  http://www.HexiCorridorPoem.com#officer
+<http://www.HexiCorridorPoem.com#officer> rdf:type owl:NamedIndividual ,
+                                                   crm:E55_Type .
+
+
+###  http://www.HexiCorridorPoem.com#sword
+<http://www.HexiCorridorPoem.com#sword> rdf:type owl:NamedIndividual ,
+                                                 crm:E90_Symbolic_Object ;
+                                        crm:P130_features_are_also_found_on <http://www.HexiCorridorPoem.com#Long_sword_of_Han_dynasty_found_in_Changxing_in_1976> ;
+                                        crm:P2_has_type <http://www.HexiCorridorPoem.com#ProductImagery> ,
+                                                        :imagery .
+
+
+###  http://www.HexiCorridorPoem.com#the_reign_of_Emperor_Yuan_of_Han_Dynasty
+<http://www.HexiCorridorPoem.com#the_reign_of_Emperor_Yuan_of_Han_Dynasty> rdf:type owl:NamedIndividual ,
+                                                                                    crm:E49_Time_Appellation .
+
+
+###  http://www.HexiCorridorPoem.com#105.256485,35.444153
+<http://www.HexiCorridorPoem.com#105.256485,35.444153> rdf:type owl:NamedIndividual ,
+                                                                crm:E47_Spatial_Coordinates ;
+                                                       crm:P1_identifies <http://www.HexiCorridorPoem.com#Long_River> .
+
+
+###  http://www.HexiCorridorPoem.com#106.864397,34.893050
+<http://www.HexiCorridorPoem.com#106.864397,34.893050> rdf:type owl:NamedIndividual ,
+                                                                crm:E47_Spatial_Coordinates ;
+                                                       crm:P1_identifies <http://www.HexiCorridorPoem.com#Long_Mountain> .
+
+
+###  http://www.HexiCorridorPoem.com#5-character
+<http://www.HexiCorridorPoem.com#5-character> rdf:type owl:NamedIndividual ,
+                                                       crm:E55_Type ;
+                                              crm:P127_has_broader_term <http://www.HexiCorridorPoem.com#Shi> .
+
+
+###  http://www.HexiCorridorPoem.com#90.21402,42.8635
+<http://www.HexiCorridorPoem.com#90.21402,42.8635> rdf:type owl:NamedIndividual ,
+                                                            crm:E47_Spatial_Coordinates ;
+                                                   crm:P1_identifies <http://www.HexiCorridorPoem.com#Loulan> .
+
+
+###  http://www.HexiCorridorPoem.com#Shanshan_County,_Xinjiang_Uygur_Autonomous_Region
+<http://www.HexiCorridorPoem.com#Shanshan_County,_Xinjiang_Uygur_Autonomous_Region> rdf:type owl:NamedIndividual ,
+                                                                                             crm:E46_Section_Definition ;
+                                                                                    crm:P1_identifies <http://www.HexiCorridorPoem.com#Loulan> .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#AD496
+:AD496 rdf:type owl:NamedIndividual ,
+                crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#AD548
+:AD548 rdf:type owl:NamedIndividual ,
+                crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#Liu_Xiaowei_wrote_the_poem_River_of_Longtou
+:Liu_Xiaowei_wrote_the_poem_River_of_Longtou rdf:type owl:NamedIndividual ,
+                                                      crm:E65_Creation ;
+                                             crm:P11_had_participant <http://www.HexiCorridorPoem.com#Liu_Xiaowei> ;
+                                             crm:P4_has_time_span_of :AD548 ;
+                                             crm:P94_has_created <http://www.HexiCorridorPoem.com#River_of_Longtou> .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#River_of_Longtou_poem
+:River_of_Longtou_poem rdf:type owl:NamedIndividual ,
+                                crm:E89_Propositional_Object ;
+                       dc:creator <http://www.HexiCorridorPoem.com#Liu_Xiaowei> ;
+                       dc:date :AD548 ;
+                       crm:P102_has_title <http://www.HexiCorridorPoem.com#River_of_Longtou> ;
+                       crm:P106_is_composed_of <http://www.HexiCorridorPoem.com#coat> ;
+                       crm:P129_is_about <http://www.HexiCorridorPoem.com#Long_Mountain> ,
+                                         <http://www.HexiCorridorPoem.com#Long_River> ,
+                                         <http://www.HexiCorridorPoem.com#Loulan> ,
+                                         <http://www.HexiCorridorPoem.com#conscripts_joined_the_army_and_guarded_Long_Mountain> ;
+                       crm:P148_has_component <http://www.HexiCorridorPoem.com#cavalry_of_Hu> ,
+                                              <http://www.HexiCorridorPoem.com#flows_with_sand> ,
+                                              <http://www.HexiCorridorPoem.com#hook> ,
+                                              <http://www.HexiCorridorPoem.com#sword> ;
+                       crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#HXP0019> ;
+                       crm:P2_has_type <http://www.HexiCorridorPoem.com#Shi> ,
+                                       <http://www.HexiCorridorPoem.com#5-character> ;
+                       crm:P67_refers_to <http://www.HexiCorridorPoem.com#Li_Guang_difficult_to_seal> ,
+                                         <http://www.HexiCorridorPoem.com#Zhi_Zhi_betrayed_Han_dynasty> ;
+                       crm:P70_is_documented_in <http://www.HexiCorridorPoem.com#Collection_of_Liu_Suzhi> ,
+                                                <http://www.HexiCorridorPoem.com#Selected_poems_on_Long_area> ;
+                       crm:P94_has_created :River_of_Longtou_poem ;
+                       crm:P94_was_created_by :Liu_Xiaowei_wrote_the_poem_River_of_Longtou ;
+                       schema:text """After the conscripts joined the army, they guarded Long Mountain (陇山Long Shan). The water of Long Shan (Long Shui) flows with sand. (从军戍陇头，陇水带沙流。) 
+
+The soldiers guarding Long Shan can always see the cavalry of non-Han (胡Hu) drinking water and resting at the foot of the mountain, so they are often ashamed of their inability to recover their lost land as soldiers. (时观胡骑饮，常为汉国羞。) 
+
+To make contributions, the officers and soldiers guarding the border are eager to forge swords and worship the hook like the ancients and serve their country on the battlefield without hesitation. (衅妻成两剑，杀子祀双钩。) 
+
+To defeat the enemy, the officers and soldiers also look forward to beheading the head of the Loulan people immediately like ancient heroes, seizing the fur of Zhi Zhi, killing the enemy, making meritorious contributions and opening up new territories. (顿取楼兰颈，就解郅支裘。) 
+
+Don't let the meritorious officers and soldiers be like Li Guang, the flying General, who establish meritorious deeds, but was not declared a lord for his whole life! (勿令如李广，功遂不封侯。)"""^^rdfs:Literal .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#allusion
+:allusion rdf:type owl:NamedIndividual ,
+                   crm:E55_Type .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#between_AD502_and_AD557
+:between_AD502_and_AD557 rdf:type owl:NamedIndividual ,
+                                  crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#between_BC166_and_BC119
+:between_BC166_and_BC119 rdf:type owl:NamedIndividual ,
+                                  crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#between_BC202_and_AD220
+:between_BC202_and_AD220 rdf:type owl:NamedIndividual ,
+                                  crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#between_BC48_and_BC36
+:between_BC48_and_BC36 rdf:type owl:NamedIndividual ,
+                                crm:E52_Time-Span ;
+                       crm:P1_is_identified_by <http://www.HexiCorridorPoem.com#the_reign_of_Emperor_Yuan_of_Han_Dynasty> .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#between_BC502_and_BC557
+:between_BC502_and_BC557 rdf:type owl:NamedIndividual ,
+                                  crm:E52_Time-Span .
+
+
+###  http://www.semanticweb.org/xps/ontologies/HXP_CRM_EQUV#imagery
+:imagery rdf:type owl:NamedIndividual ,
+                  crm:E55_Type .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
